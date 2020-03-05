@@ -1,0 +1,29 @@
+
+<div class= "container">
+  <h1 class= "text-center">Yopmail</h1>
+  <%= link_to "Recevoir un mail", emails_path, :method => :post, remote: true  %>
+  <div class = "row">
+    <div class= "col">
+      <h2> Liste des emails</h2>
+      <div id ="mail-box">
+      <%@emails.sort.reverse.each do |email|%>
+      <div id = "<%= email.object %>_<%= email.body %>">
+        <%= email.object%>
+        <br>
+        <% if email.read == false %>
+            <%= link_to "#{email.body}", email_path(email.id), remote: true%>
+        <% elsif email.read == true %>
+            <%= link_to "<span class = 'text-secondary'>#{email.body}</span>".html_safe, email_path(email.id), remote: true%>
+        <% end %>
+        <hr>
+      </div>
+      <% end %>
+      </div>
+    </div>
+    <div class= "col">
+      <h2>Email selectionné</h2>
+      <div id = "open-mail">
+      </div>
+    </div>
+  </div>
+</div>

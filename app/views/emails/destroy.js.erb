@@ -1,0 +1,6 @@
+main_mail = document.getElementById("main-mail")
+document.getElementById("<%= @email.object %>_<%= @email.body %>").remove()
+if(main_mail) {
+  main_mail.remove()
+}
+

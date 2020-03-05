@@ -1,0 +1,7 @@
+if (<%= @task.status == true %>) {
+document.getElementById("<%= @task.title %>_<%= @task.id %>").style.color ='grey'
+} 
+else {
+document.getElementById("<%= @task.title %>_<%= @task.id %>").style.color =''
+}
+

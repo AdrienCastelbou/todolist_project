@@ -1,0 +1,7 @@
+a = document.getElementById("open-mail")
+main_mail = document.getElementById("main-mail")
+if(main_mail) {
+  main_mail.remove()
+}
+a.insertAdjacentHTML("afterbegin", "<%= j render 'show', email: @email %>")
+document.getElementById("<%= @email.object %>_<%= @email.body %>").innerHTML = "<%= j render 'email', email: @email %>"

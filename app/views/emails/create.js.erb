@@ -1,0 +1,3 @@
+a = document.getElementById("mail-box")
+a.insertAdjacentHTML("afterbegin", "<%= j render 'email', email: @email %>")
+console.log(a)

@@ -1,0 +1,14 @@
+<div id = "main-mail">
+<h1><%= email.object%></h1>
+<br>
+  <%=email.body%>
+<br>
+<%= link_to "<i class='fas fa-trash'></i>".html_safe, email_path(email.id), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true %>
+
+<% if email.read == false %>
+<%= link_to "Marquer comme lu", email_path(email.id), :method => :put, remote: true %>
+<% elsif email.read == true %>
+  <%= link_to "Marquer comme non lu", email_path(email.id), :method => :put, remote: true %>
+<% end %>
+
+</div>

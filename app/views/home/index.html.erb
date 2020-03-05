@@ -1,0 +1,49 @@
+<h1 class="text-center mb-4">Welcome to my todolist app</h1>
+<%= render 'layouts/task_form'  %>
+<div class="container" id = "all_tasks">
+  <ul>
+  <% @categories.each do  |category|%>
+  <li><%= category.title  %></li>
+  <div class="card">
+    <ul class ="tasks-list">
+      <% category.tasks.each do |task|  %>
+      <li id = "<%= task.title %>_<%= task.id %>">
+      <% if task.status  == true%>
+        <%= check_box_tag :status, 1, true , data: { remote: true, url: task_path(task.id), params: { id: task.id}.to_param, method: "put", id: "checkbox" }%> 
+      <% elsif task.status == false %>
+        <%= check_box_tag :status, 1, false , data: { remote: true, url: task_path(task.id), params: { id: task.id}.to_param, method: "put", id: "checkbox" }%> 
+      <% end %>
+      <%= link_to "<i class='fas fa-trash'></i>".html_safe, task_path(task.id), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true %>
+       
+        <%= task.title  %>
+        <% unless task.deadline.nil? %>
+          , to read: <%= task.deadline.strftime('%D')  %>
+        <% end %>
+        <script> 
+        if (<%= task.status == true%>) {
+          document.getElementById("<%= task.title %>_<%= task.id %>").style.color ='grey'
+        }
+        </script>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @tasks.each do |task|  %>
+      <div class="card col-3">
+        <% unless task.image.nil? %>
+          <%= image_tag task.image, class: "rounded-circle" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+
+</script>
